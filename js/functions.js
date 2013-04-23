@@ -24,8 +24,11 @@ var APP = APP || {};
 	};
 
 	APP.states = {};
+
 	APP.pages = {};
+
 	APP.utils = {};
+	
 	APP.map = {};
 
 })(window, document);
