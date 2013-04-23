@@ -1,4 +1,4 @@
-<!-- 
+ <!--
 	Single page multi-device app
 	- Reisgids
 	- 3 pagina's
@@ -13,13 +13,15 @@
 	<meta charset="UTF-8">
 	<title>WebApp2</title>
 	<link rel="stylesheet" href="style.css">
+	<link href='http://fonts.googleapis.com/css?family=Merriweather+Sans:400,700,800,300' rel='stylesheet' type='text/css'>
+	<link href='http://fonts.googleapis.com/css?family=Noto+Serif:400,700,400italic,700italic' rel='stylesheet' type='text/css'>
 </head>
 <body>
 	
 	<!-- index page -->
 	<section id="wrapper" data-role="page" id="list">
 		<header class="mainheader">
-			<h1>Hurghada</h1>
+			<h1>LOCATIES</h1>
 		</header>
 		<section class="content">
 			<ul class="locations listview">
@@ -41,22 +43,22 @@
 	<!-- detail page -->
 	<section id="wrapper" data-role="page" id="detail">
 		<header class="mainheader">
-			<button class='backbtn'>Terug</button>
-			<h1>Hurghada</h1>
+			<button class='backbtn'><span></span></button>
+			<h1>VAR</h1>
 		</header>
 
 		<section>
 			<nav>
 				<button>Info</button>
-				<button>Kaart</button>
+				<button class="active">Kaart</button>
 			</nav>
 		</section>
 
 		<section class="content" id="info">
-			info
+			<div>There are many variations of passages of Lorem Ipsum available, but the majority have suffered alteration in some form, by injected humour, or randomised words which don't look even slightly believable. If you are going to use a passage of Lorem Ipsum, you need to be sure there isn't anything embarrassing hidden in the middle of text.</div>
 		</section>
 
-		<section class="content" id="kaart">
+		<section class="content" id="kaart" style="display:none;">
 			kaart
 		</section>
 	</section>
