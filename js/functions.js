@@ -3,10 +3,14 @@ var APP = APP || {};
 // anonymous function
 (function(window, document){
 
+
 	// ajax call to locations.json
 	microAjax("json/locations.json", function (contents) {
   		// get the data from json file and store it into APP.data
   		APP.data = JSON.parse(contents);
+
+  		// only do when json is loaded
+  		onDomReady( APP.controller.init );
 	});
 
 	// object used for the template engine
@@ -88,7 +92,7 @@ var APP = APP || {};
 		init: function () {
 			routie({
     			'locatie/*': APP.pages.location,
-    			'*': APP.pages.locations	
+    			'': APP.pages.locations	
 			});
 		},
 
@@ -265,8 +269,5 @@ var APP = APP || {};
 		}
 	}
 
-
-
-	onDomReady( APP.controller.init );
 
 })(window, document);
