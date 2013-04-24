@@ -4,16 +4,23 @@ var APP = APP || {};
 (function(window, document){
 
 	// data here;
-	APP.data = { 
-		cafe : {
-			loc: {
-				lat: 25452425252,
-				lng: 32554252455
-			},
-			image: "images/thumb.png",
-			info: "Lorem ipsum dolar sit amet"
+	APP.data = [
+		{
+			name : 'Café Noir',
+			slug : 'cafe-noir',
+			type : 'cafe'
+		},
+		{
+			name : 'Café Noir',
+			slug : 'cafe-noir',
+			type : 'cafe'
+		},
+		{
+			name : 'Café Noir',
+			slug : 'cafe-noir',
+			type : 'cafe'
 		}
-	}
+	]
 
 	APP.controller = {
 		// Use regular expression for string matching (gi == global search, ignore case)
@@ -51,20 +58,24 @@ var APP = APP || {};
       		router.init();
 		},
 
-		getPage: function (page, id) {
+		getPage: function (page, slug) {
+
 
             var route = window.location.hash.slice(2),
-            	id = id || false,
-                sections = document.querySelectorAll('section[data-role=page]'),
-                section = document.querySelectorAll('#'+page)[0];
-
-                console.log(section);
+            	slug = slug || false,
+               
+                pages = document.querySelectorAll('section[data-role=page]'),
+                currentPage = document.querySelectorAll('#'+page)[0];
             
-            if (section) {
-            	for (var i=0; i < sections.length; i++){
-            		sections[i].classList.remove('show');
+            if (page) {
+            	for (var i=0; i < pages.length; i++){
+            		pages[i].classList.remove('show');
             	}
-            	section.classList.add('show');
+            	currentPage.classList.add('show');
+            }
+
+            if(page == 'list'){
+            	 weld(document.querySelector('.location'), APP.data);
             }
 
 		}
@@ -75,8 +86,8 @@ var APP = APP || {};
 		locations: function () {
 			APP.states.getPage('list');
 		},
-		location: function(locId){
-			APP.states.getPage('detail', locId);
+		location: function(slug){
+			APP.states.getPage('detail', slug);
 		}
 	};
 
