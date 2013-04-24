@@ -78,8 +78,9 @@ var APP = APP || {};
 	APP.states = {
 		init: function () {
 			var routes = {
+		        '/locations/:locId': APP.pages.location,
 		        '/locations': APP.pages.locations,
-		        '/locations/:locId': APP.pages.location
+		        '/:hash': APP.pages.locations
 		      };
 
 			var router = Router(routes);
@@ -102,17 +103,25 @@ var APP = APP || {};
             	currentPage.classList.add('show');
             }
 
+
             if(page == 'list'){
             	 Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
             }else if(page == 'detail'){
             	// get data based on hash with underscore
             	var location = _.findWhere(APP.data, {href: window.location.hash});
             	
-            	// make an array from the object for Transparency
-            	location = [location];
 
-            	// render the data
-            	Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);
+            	if(location){
+            		// make an array from the object for Transparency
+            		location = [location];
+            		// render the data
+            		Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
+            	}else{
+            		// if there is no location
+            		APP.states.getPage('list');
+            	}
+
+            	
             }
 
 		}
