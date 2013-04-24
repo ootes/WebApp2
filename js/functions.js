@@ -8,7 +8,8 @@ var APP = APP || {};
 	[{
 		title : 'Café Noir',
 		href : '#/locations/cafe-noir',
-		type : 'cafe'
+		type : 'cafe',
+		info : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue fermentum enim et rhoncus. Suspendisse id tristique neque. Proin leo risus, interdum eget volutpat et, elementum non arcu. Duis nec metus vitae turpis malesuada fringilla. Phasellus tristique odio eu ligula volutpat eget condimentum magna luctus. Nulla pellentesque mauris ac turpis consequat non pellentesque risus vehicula. Aenean in mauris urna. Praesent sed porta mauris. Quisque odio enim, iaculis et lacinia eleifend, posuere nec elit. Phasellus feugiat ullamcorper rhoncus. Duis porta laoreet eros in tempor. Nulla at facilisis libero. Curabitur aliquet vehicula nunc eu convallis. Ut non odio enim, porttitor pretium nisi.'
 	},
 	{
 		title : 'Café Noir',
@@ -17,7 +18,7 @@ var APP = APP || {};
 	},
 	{
 		title : 'Jaja',
-		href : '#/locations/cafe-noir',
+		href : '#/locations/jaja',
 		type : 'cafe'
 	},
 	{
@@ -35,9 +36,14 @@ var APP = APP || {};
 				return this.title;
 			}
 		},
-		location :{
-			loctitle: function(){
+		loctitle :{
+			text : function(){
 				return this.title;
+			}
+		},
+		info : {
+			text : function(){
+				return this.info;
 			}
 		}
 	}
@@ -49,6 +55,7 @@ var APP = APP || {};
 		isIDevice : (/iphone|ipad/gi).test(navigator.appVersion),
 
 		init: function () {
+
 			// Init page states			
 			APP.states.init();
 
@@ -98,8 +105,14 @@ var APP = APP || {};
             if(page == 'list'){
             	 Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
             }else if(page == 'detail'){
+            	// get data based on hash with underscore
+            	var location = _.findWhere(APP.data, {href: window.location.hash});
+            	
+            	// make an array from the object for Transparency
+            	location = [location];
 
-            	//Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
+            	// render the data
+            	Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);
             }
 
 		}
@@ -127,9 +140,6 @@ var APP = APP || {};
 			}
 		}
 	};
-
-
-	APP.map = {};
 
 
 	onDomReady( APP.controller.init );
