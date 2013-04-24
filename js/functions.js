@@ -4,23 +4,44 @@ var APP = APP || {};
 (function(window, document){
 
 	// data here;
-	APP.data = [
-		{
-			name : 'Café Noir',
-			slug : 'cafe-noir',
-			type : 'cafe'
+	APP.data = 
+	[{
+		title : 'Café Noir',
+		href : '#/locations/cafe-noir',
+		type : 'cafe'
+	},
+	{
+		title : 'Café Noir',
+		href : '#/locations/cafe-noir',
+		type : 'cafe'
+	},
+	{
+		title : 'Jaja',
+		href : '#/locations/cafe-noir',
+		type : 'cafe'
+	},
+	{
+		title : 'Café Noir',
+		href : '#/locations/cafe-noir',
+		type : 'cafe'
+	}];
+
+	APP.directives = {
+		link : {
+			href : function(){
+				return this.href;
+			},
+			text : function(){
+				return this.title;
+			}
 		},
-		{
-			name : 'Café Noir',
-			slug : 'cafe-noir',
-			type : 'cafe'
-		},
-		{
-			name : 'Café Noir',
-			slug : 'cafe-noir',
-			type : 'cafe'
+		location :{
+			loctitle: function(){
+				return this.title;
+			}
 		}
-	]
+	}
+	
 
 	APP.controller = {
 		// Use regular expression for string matching (gi == global search, ignore case)
@@ -41,7 +62,7 @@ var APP = APP || {};
 			// Event delegation, for efficient event handling
 			var el = document.querySelector("body");
 			Gator(el).on('click', function(e) {
-				e.preventDefault();
+				//e.preventDefault();
 			    // e.target retrieves clicked element 
 			});
 		}
@@ -75,7 +96,10 @@ var APP = APP || {};
             }
 
             if(page == 'list'){
-            	 weld(document.querySelector('.location'), APP.data);
+            	 Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
+            }else if(page == 'detail'){
+
+            	//Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
             }
 
 		}
