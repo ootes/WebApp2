@@ -15,7 +15,7 @@ var APP = APP || {};
 		link : {
 			href : function(){
 				// this refers to one instance in the json file
-				return this.href;
+				return "#locatie/"+this.nicename;
 			},
 			text : function(){
 
@@ -62,7 +62,7 @@ var APP = APP || {};
 
 				// if backbtn is clicked go to index
 				if(targetClass == 'backbtn'){
-					window.location = '/#/index';
+					routie('');
 				}
 				
 			});
@@ -71,27 +71,16 @@ var APP = APP || {};
 
 	APP.states = {
 		init: function () {
-
-			// basic routing
-			var routes = {
-		        '/locations/:locId': APP.pages.location,
-		        '/locations': APP.pages.locations,
-		        '/:hash': APP.pages.locations,
-		        '/': APP.pages.locations
-
-		    };
-
-			var router = Router(routes);
-      		router.init();
+			routie({
+    			'locatie/:name': APP.pages.location,
+    			'*': APP.pages.locations	
+			});
 		},
 
 		// function to get a page
 		getPage: function (page, slug) {
 
-
-            var route = window.location.hash.slice(2),
-            	slug = slug || false,  
-                pages = document.querySelectorAll('section[data-role=page]'),
+            var pages = document.querySelectorAll('section[data-role=page]'),
                 currentPage = document.querySelectorAll('#'+page)[0];
             
             // add show / hide classes to pages
@@ -110,7 +99,7 @@ var APP = APP || {};
             switch (page) {
 			   	case 'detail':
 			   		// get data based on hash with underscore
-            		var location = _.findWhere(APP.data, {href: window.location.hash});
+            		var location = _.findWhere(APP.data, {nicename: slug});
             		if(location){
             			// make an array from the object for Transparency
             			location = [location];
