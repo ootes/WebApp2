@@ -56,7 +56,9 @@ var APP = APP || {};
             var route = window.location.hash.slice(2),
             	id = id || false,
                 sections = document.querySelectorAll('section[data-role=page]'),
-                section = document.querySelectorAll('#'+page+']')[0];
+                section = document.querySelectorAll('#'+page)[0];
+
+                console.log(section);
             
             if (section) {
             	for (var i=0; i < sections.length; i++){
