@@ -9,7 +9,7 @@ var APP = APP || {};
 		title : 'Café Noir',
 		href : '#/locations/cafe-noir',
 		type : 'cafe',
-		info : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue fermentum enim et rhoncus. Suspendisse id tristique neque. Proin leo risus, interdum eget volutpat et, elementum non arcu. Duis nec metus vitae turpis malesuada fringilla. Phasellus tristique odio eu ligula volutpat eget condimentum magna luctus. Nulla pellentesque mauris ac turpis consequat non pellentesque risus vehicula. Aenean in mauris urna. Praesent sed porta mauris. Quisque odio enim, iaculis et lacinia eleifend, posuere nec elit. Phasellus feugiat ullamcorper rhoncus. Duis porta laoreet eros in tempor. Nulla at facilisis libero. Curabitur aliquet vehicula nunc eu convallis. Ut non odio enim, porttitor pretium nisi.'
+		desc : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue fermentum enim et rhoncus. Suspendisse id tristique neque. Proin leo risus, interdum eget volutpat et, elementum non arcu. Duis nec metus vitae turpis malesuada fringilla. Phasellus tristique odio eu ligula volutpat eget condimentum magna luctus. Nulla pellentesque mauris ac turpis consequat non pellentesque risus vehicula. Aenean in mauris urna. Praesent sed porta mauris. Quisque odio enim, iaculis et lacinia eleifend, posuere nec elit. Phasellus feugiat ullamcorper rhoncus. Duis porta laoreet eros in tempor. Nulla at facilisis libero. Curabitur aliquet vehicula nunc eu convallis. Ut non odio enim, porttitor pretium nisi.'
 	},
 	{
 		title : 'Café Noir',
@@ -39,11 +39,6 @@ var APP = APP || {};
 		loctitle :{
 			text : function(){
 				return this.title;
-			}
-		},
-		info : {
-			text : function(){
-				return this.info;
 			}
 		}
 	}
@@ -116,6 +111,8 @@ var APP = APP || {};
             		location = [location];
             		// render the data
             		Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
+            		
+            		APP.map.init();
             	}else{
             		// if there is no location
             		APP.states.getPage('list');
@@ -149,6 +146,17 @@ var APP = APP || {};
 			}
 		}
 	};
+
+	APP.map = {
+		init: function(){
+			var map = L.map('map').setView([51.505, -0.09], 13);
+
+			// add an OpenStreetMap tile layer
+			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+			    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+			}).addTo(map);
+		}
+	}
 
 
 	onDomReady( APP.controller.init );
