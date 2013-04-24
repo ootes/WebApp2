@@ -183,3 +183,11 @@ section#info > div{
 }
 
 
+/* Leaflet maps */
+
+#map{
+	height: 380px;
+	width: 100%;
+}
+
+
