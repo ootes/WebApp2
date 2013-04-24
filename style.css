@@ -80,6 +80,15 @@ section.content{
 	min-height: 200px;
 }
 
+
+section[data-role=page]{
+	display: none;
+}
+
+section[data-role=page].show{
+	display: block;
+}
+
 .backbtn{
 	position: absolute;
 	padding:0;
