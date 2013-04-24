@@ -3,22 +3,30 @@ var APP = APP || {};
 // anonymous function
 (function(window, document){
 
-
+	// ajax call to locations.json
 	microAjax("json/locations.json", function (contents) {
+  		// get the data from json file and store it into APP.data
   		APP.data = JSON.parse(contents);
 	});
 
+	// object used for the template engine
 	APP.directives = {
+		// find a classname link
 		link : {
 			href : function(){
+				// this refers to one instance in the json file
 				return this.href;
 			},
 			text : function(){
+
+				// this refers to one instance in the json file
 				return this.title;
 			}
 		},
+		// find a classname loctitle
 		loctitle :{
 			text : function(){
+				// this = refers to one instance in the json file
 				return this.title;
 			}
 		}
@@ -49,7 +57,10 @@ var APP = APP || {};
 			var el = document.querySelector("body");
 			Gator(el).on('click', function(e) {
 
+				// get classname from target
 				var targetClass = e.target.className;
+
+				// if backbtn is clicked go to index
 				if(targetClass == 'backbtn'){
 					window.location = '/#/index';
 				}
@@ -60,57 +71,69 @@ var APP = APP || {};
 
 	APP.states = {
 		init: function () {
+
+			// basic routing
 			var routes = {
 		        '/locations/:locId': APP.pages.location,
 		        '/locations': APP.pages.locations,
-		        '/:hash': APP.pages.locations
+		        '/:hash': APP.pages.locations,
+		        '/': APP.pages.locations
+
 		    };
 
 			var router = Router(routes);
       		router.init();
 		},
 
+		// function to get a page
 		getPage: function (page, slug) {
 
 
             var route = window.location.hash.slice(2),
-            	slug = slug || false,
-               
+            	slug = slug || false,  
                 pages = document.querySelectorAll('section[data-role=page]'),
                 currentPage = document.querySelectorAll('#'+page)[0];
             
+            // add show / hide classes to pages
             if (page) {
+            	// loop trough pages and remove all show classes
             	for (var i=0; i < pages.length; i++){
             		pages[i].classList.remove('show');
             	}
+
+            	// add show class to current page
             	currentPage.classList.add('show');
             }
 
 
-            if(page == 'list'){
-            	 Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
-            }else if(page == 'detail'){
-            	// get data based on hash with underscore
-            	var location = _.findWhere(APP.data, {href: window.location.hash});
-            	
+            // populate template with data
+            switch (expression) {
+			   	case 'detail':
+			   		// get data based on hash with underscore
+            		var location = _.findWhere(APP.data, {href: window.location.hash});
+            		if(location){
+            			// make an array from the object for Transparency
+            			location = [location];
+            			// render the data
+            			Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
+            		}else{
+            			// if there is no location get the listview
+            			APP.states.getPage('list');
+            		}
+			    	break;
 
-            	if(location){
-            		// make an array from the object for Transparency
-            		location = [location];
-            		// render the data
-            		Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
-            	}else{
-            		// if there is no location
-            		APP.states.getPage('list');
-            	}
+			    case 'list':
+			    	Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
+			    	break;
+				default:
 
-            	
-            }
-
+			}
 		}
 
 	};
 
+
+	// functions for the routing
 	APP.pages = {
 		locations: function () {
 			APP.states.getPage('list');
@@ -120,6 +143,7 @@ var APP = APP || {};
 		}
 	};
 
+	// some handy stuff
 	APP.utils = {
 		// Source: https://gist.github.com/mhammonds/1190492#file-hidemobileaddressbar-js
 		hideAddressBar: function () {
@@ -133,6 +157,7 @@ var APP = APP || {};
 		}
 	};
 
+	// map object to handle the mapview
 	APP.map = {
 		init: function(){
 			this.mapView = L.map('map').setView([51.505, -0.09], 13);
