@@ -54,11 +54,11 @@ var APP = APP || {};
 
 		init: function () {
 
-			// Init page states			
-			APP.states.init();
-
 			// init mapView
 			APP.map.init();
+
+			// Init page states			
+			APP.states.init();
 
 			// Hide addressbar on mobile/tablet
 			APP.utils.hideAddressBar();
@@ -148,13 +148,26 @@ var APP = APP || {};
 			   		// get data based on hash with underscore
             		var location = _.findWhere(APP.data, {nicename: nicename});
             		if(location){
-
-            			// make new latlng object
-            			var latlng = new L.LatLng(location.location.lat, location.location.long);
-
             			
+            			// fix to map for grey tiles
+						APP.map.mapView.invalidateSize(false);
+
+            			APP.map.mapView.setView(location.latlng, 15, true);
+
+            			// give all markers an blue marker
+            			_.each(APP.data, function(value, key, list){
+            				if(value.nicename != location.nicename){
+            					APP.map.markers[value.nicename].setIcon(APP.map.icons.normal);
+            				}else{
+            					APP.map.markers[value.nicename].setIcon(APP.map.icons.active);
+            				}
+            			});
+
+
             			// make an array from the object for Transparency
             			location = [location];
+
+
 
             			// render the data
             			Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
@@ -203,12 +216,52 @@ var APP = APP || {};
 	// map object to handle the mapview
 	APP.map = {
 		init: function(){
-			this.mapView = L.map('map').setView([51.505, -0.09], 13);
+			self = this;
+
+			this.mapView = L.map('map', {
+    			center: [52.36213, 4.8993],
+    			zoom: 15
+			});
 
 			// add an OpenStreetMap tile layer
 			L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
 			    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(this.mapView);
+
+			// add markers to map
+			APP.map.markers = {};
+
+			APP.map.icons = {
+				normal : L.icon({iconUrl: 'images/icon.png'}),
+				active: L.icon({iconUrl: 'images/icon-active.png'})
+			}
+
+			_.each(APP.data, function(value, key, list){
+				// add markers to map
+				APP.map.markers[value.nicename] = L.marker(value.latlng, {
+					title : value.title,
+					icon : APP.map.icons.normal
+				}).addTo(self.mapView);
+
+				// bind popup to markers
+				APP.map.markers[value.nicename].bindPopup("<p>"+value.title+"</p>")
+
+				// add mouseover event
+				APP.map.markers[value.nicename].on('mouseover', function(e) {
+					this.openPopup()
+				});
+
+				// add mouseout event
+				APP.map.markers[value.nicename].on('mouseout', function(e) {
+					this.closePopup()
+				});
+
+				//add click event
+				APP.map.markers[value.nicename].on('click', function(e) {
+					routie("locatie/"+value.nicename+"/");
+				});
+
+			});
 		}
 	}
 

@@ -5,56 +5,56 @@
 	"nicename":"cafe-noir",
 	"type":"cafe",
 	"info":"Wat vroeger een autogarage was is nu een bruisend café gelegen aan een van de centrale verkeersaders van de stad Amsterdam. Met een publiek dat varieert van studenten tot veertigers is Café Noir een plek waar iedereen op zijn gemak kan genieten van een kop koffie, lunch, diner of een biertje",
-	"location": [52.361818, 4.908212]
+	"latlng": [52.361818, 4.908212]
 },
 {
 	"title":"Café De Roeter",
 	"nicename":"cafe-de-roeter",
 	"type":"cafe",
 	"info":"Op een steenworp afstand van collegacafé Koosje vindt u Café De Roeter. Tegenover het Roeterseiland waar een groot complex van de Universiteit van Amsterdam staat. Het onverwachte van De Roeter is dat je achter een vrij karakterloze nieuwbouwgevel een mooi doorleefde kroeg aantreft. Bruin ingericht, met veel licht en alle ruimte.",
-	"location": [52.36239, 4.91087]
+	"latlng": [52.36239, 4.91087]
 },
 {
 	"title":"Café Koosje",
 	"nicename":"cafe-koosje",
 	"type":"cafe",
 	"info":"Begonnen als “dochter van Stevens”, het bekende café op de Nieuwmarkt, is Koosje inmiddels een grote meid geworden…. Geboren in 2001, is Koosje inmiddels niet weg te denken uit de Plantage-buurt.",
-	"location": [52.3669, 4.9121]
+	"latlng": [52.3669, 4.9121]
 },
 {
 	"title":"EetCafé Magere Brug",
 	"nicename":"eetcafe-magere-brug",
 	"type":"cafe",
 	"info":"Cafe de magere brug ligt aan de amstel vlak naast Carré en is zowel in de winter als in de zomer een heerlijke plek om te vertoeven.",
-	"location": [52.36368, 4.9033]
+	"latlng": [52.36368, 4.9033]
 },
 {
 	"title":"Café-restaurant De Ysbreeker",
 	"nicename":"cafe-restaurant-de-ysbreeker",
 	"type":"cafe",
 	"info":"Er kan veel in De Ysbreeker. Ontbijten of een koffie meenemen aan onze espressobar met Italiaanse koffiemachine. Bij ons werken met laptop en wifi-verbinding. Buiten zitten op ons terras aan de Amsterdamse Amstel. Alle kranten spellen aan de leestafel. Van de vroege middag tot laat in de avond een Ysbreeker burger eten of verse oesters. Want ons restaurant is lang open en serveert eerlijke gerechten van dagverse producten.",
-	"location": [52.35833, 4.9066]
+	"latlng": [52.35833, 4.9066]
 },
 {
 	"title":"CREA Café",
 	"nicename":"crea-cafe",
 	"type":"cafe",
 	"info":"Het CREA Café ligt als een verborgen parel op het Roeterseiland. Een modern café met een knusse, ‘Berlijnse' huiskamersfeer. Dé plek om tijdens de pauze van je cursus of na je college bij te praten. Of rustig een krantje te lezen aan de leestafel. Tijdens voorstellingen en lezingen fungeert het café als foyer. En in de zomer geniet je aan het water van de Nieuwe Achtergracht met een drankje van de laatste zonnestralen.",
-	"location":[52.3645, 4.9130]
+	"latlng":[52.3645, 4.9130]
 },
 {
 	"title":"Café de Huyschkaemer",
 	"nicename":"cafe-de-huyschkaemer",
 	"type":"cafe",
 	"info":"Sinds meer dan dertig jaar een begrip in Amsterdam. Weliswaar is het interieur de laatste tijd vele malen veranderd, de sfeer zeker niet! U zult zich snel thuisvoelen in de warme sfeer die het café, de bezoekers en het personeel uitstralen.",
-	"location": [52.36213, 4.8993]
+	"latlng": [52.36213, 4.8993]
 },
 {
 	"title":"Onder de Ooievaar Café",
 	"nicename":"onder-de-ooievaar-cafe",
 	"type":"cafe",
 	"info":"In Amsterdam centrum is op de hoek van de Prinsengracht en de Utrechtsestraat Café Onder de Ooievaar gevestigd. Onder de Ooievaar is een bruin café met een breed publiek en een opvallend grote robuuste bar. De kleine keuken serveert zeer lekkere maaltijden voor een redelijke prijs. De koffie is uitstekend en op de tap is afwisselend een keur aan biersoorten aanwezig.",
-	"location": [52.36221, 4.89917]
+	"latlng": [52.36221, 4.89917]
 },
 
 {
@@ -62,7 +62,7 @@
 	"nicename":"cafe-van-wou",
 	"type":"cafe",
 	"info":"Hartje Albert Cuyp kom je Café Van Wou tegen. Voor een uitstekend kop koffie met de lekkerste appeltaart van Amsterdam, een vers broodje, smakelijke lunch of een gezellige borrel later op de dag aan de bar ... bij ons ben je altijd welkom. Bij mooi weer is het op ons terras goed vertoeven. Leuk feestje te vieren? Ook dan is Lunchcafé Bozz een uitstekende lokatie.",
-	"location": [52.35709 ,4.89988]
+	"latlng": [52.35709 ,4.89988]
 },
 
 
@@ -71,7 +71,7 @@
 	"nicename":"cafe-bozz",
 	"type":"cafe",
 	"info":"Hartje Albert Cuyp kom je Lunchcafé Bozz tegen. Voor een uitstekend kop koffie met de lekkerste appeltaart van Amsterdam, een vers broodje, smakelijke lunch of een gezellige borrel later op de dag aan de bar ... bij ons ben je altijd welkom. Bij mooi weer is het op ons terras goed vertoeven. Leuk feestje te vieren? Ook dan is Lunchcafé Bozz een uitstekende lokatie.",
-	"location": [52.35686, 4.89756]
+	"latlng": [52.35686, 4.89756]
 }
 
 ]
