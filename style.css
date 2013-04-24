@@ -143,7 +143,8 @@ section > nav > button:first-child{
 section > nav > button:first-child:before{
 	content: url(images/item.png);
 	position: absolute;
-	left:47px;
+	left:50%;
+	margin-left:-45px;
 	top:5px;
 	height: 30px;
 	width: 30px;
@@ -156,7 +157,8 @@ section > nav > button:last-child{
 section > nav > button:last-child:before{
 	content: url(images/map.png);
 	position: absolute;
-	left:42px;
+	left:50%;
+	margin-left:-52px;
 	top:5px;
 	height: 30px;
 	width: 30px;
