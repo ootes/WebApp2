@@ -107,7 +107,7 @@ var APP = APP || {};
 
 
             // populate template with data
-            switch (expression) {
+            switch (page) {
 			   	case 'detail':
 			   		// get data based on hash with underscore
             		var location = _.findWhere(APP.data, {href: window.location.hash});
