@@ -62,6 +62,7 @@ var APP = APP || {};
 
 				// if backbtn is clicked go to index
 				if(targetClass == 'backbtn'){
+					// route to index
 					routie('');
 				}
 				
