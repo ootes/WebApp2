@@ -42,17 +42,17 @@
 		</header>
 
 		<section>
-			<nav>
-				<button>Info</button>
-				<button class="active">Kaart</button>
+			<nav class='tabs'>
+				<a class='infolink' href="#">Info</a>
+				<a class="maplink" href="#">Kaart</a>
 			</nav>
 		</section>
 
-		<section class="content" id="info">
-		info
+		<section class="content" id="infotab" data-role='tab'>
+			<p class="info">Loading info &hellip;</p>
 		</section>
 
-		<section class="content" id="kaart">
+		<section class="content" id="kaarttab" data-role='tab'>
 			<div id="map"></div>
 		</section>
 	</section>

@@ -15,7 +15,7 @@ var APP = APP || {};
 		link : {
 			href : function(){
 				// this refers to one instance in the json file
-				return "#locatie/"+this.nicename;
+				return "#locatie/"+this.nicename+"/";
 			},
 			text : function(){
 
@@ -23,6 +23,19 @@ var APP = APP || {};
 				return this.title;
 			}
 		},
+		infolink: {
+			href : function(){
+				// this refers to one instance in the json file
+				return "#locatie/"+this.nicename+"/info/";
+			}
+		},
+		maplink: {
+			href : function(){
+				// this refers to one instance in the json file
+				return "#locatie/"+this.nicename+"/kaart/";
+			}	
+		},
+
 		// find a classname loctitle
 		loctitle :{
 			text : function(){
@@ -31,6 +44,7 @@ var APP = APP || {};
 			}
 		}
 	}
+
 	
 
 	APP.controller = {
@@ -73,7 +87,7 @@ var APP = APP || {};
 	APP.states = {
 		init: function () {
 			routie({
-    			'locatie/:name': APP.pages.location,
+    			'locatie/*': APP.pages.location,
     			'*': APP.pages.locations	
 			});
 		},
@@ -83,7 +97,7 @@ var APP = APP || {};
 
             var pages = document.querySelectorAll('section[data-role=page]'),
                 currentPage = document.querySelectorAll('#'+page)[0];
-            
+      
             // add show / hide classes to pages
             if (page) {
             	// loop trough pages and remove all show classes
@@ -95,15 +109,53 @@ var APP = APP || {};
             	currentPage.classList.add('show');
             }
 
-
             // populate template with data
             switch (page) {
 			   	case 'detail':
+
+			   		// spit the slug with a slash
+			   		var hash = slug.split('/'),
+			   			nicename = hash[0],
+			   			tab = hash[1] || 'info';
+
+			   		// if tab is not valid fallback to infotab
+			   		if(tab != 'kaart'){
+			   			// tab us info
+			   			tab = 'info';
+
+			   			document.querySelectorAll('.maplink')[0].classList.remove('active');
+			   			document.querySelectorAll('.infolink')[0].classList.add('active');
+			   		}else{
+			   			// tab is map
+						document.querySelectorAll('.infolink')[0].classList.remove('active');
+			   			document.querySelectorAll('.maplink')[0].classList.add('active');
+
+			   		}
+
+
+			   		// select tabs
+			   		var tabs = document.querySelectorAll('section[data-role=tab]'),
+               			currentTab = document.querySelectorAll('#'+tab+'tab')[0];
+
+	            	// loop trough pages and remove all show classes
+	            	for (var i=0; i < tabs.length; i++){
+	            		tabs[i].classList.remove('show');
+	            	}
+
+	            	// add show class to current tab
+	            	currentTab.classList.add('show');
+
 			   		// get data based on hash with underscore
-            		var location = _.findWhere(APP.data, {nicename: slug});
+            		var location = _.findWhere(APP.data, {nicename: nicename});
             		if(location){
+
+            			// make new latlng object
+            			var latlng = new L.LatLng(location.location.lat, location.location.long);
+
+            			
             			// make an array from the object for Transparency
             			location = [location];
+
             			// render the data
             			Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
             		}else{
@@ -147,6 +199,7 @@ var APP = APP || {};
 		}
 	};
 
+
 	// map object to handle the mapview
 	APP.map = {
 		init: function(){
@@ -158,6 +211,7 @@ var APP = APP || {};
 			}).addTo(this.mapView);
 		}
 	}
+
 
 
 	onDomReady( APP.controller.init );

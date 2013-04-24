@@ -81,11 +81,11 @@ section.content{
 }
 
 
-section[data-role=page]{
+section[data-role=page], section[data-role=tab]{
 	display: none;
 }
 
-section[data-role=page].show{
+section[data-role=page].show, section[data-role=tab].show{
 	display: block;
 }
 
@@ -117,7 +117,7 @@ section > nav{
 	overflow: hidden;
 }
 
-section > nav > button{
+section > nav > a{
 	width: 48%;
 	height: 40px;
 	margin:0;
@@ -132,11 +132,11 @@ section > nav > button{
 	color: #333;
 	position: relative;
 }
-section > nav > button:first-child{
+section > nav > a:first-child{
 	border-top-left-radius: 3px;
 }
 
-section > nav > button:first-child:before{
+section > nav > a:first-child:before{
 	content: url(images/item.png);
 	position: absolute;
 	left:50%;
@@ -146,11 +146,11 @@ section > nav > button:first-child:before{
 	width: 30px;
 }
 
-section > nav > button:last-child{
+section > nav > a:last-child{
 	border-top-right-radius: 3px;
 }
 
-section > nav > button:last-child:before{
+section > nav > a:last-child:before{
 	content: url(images/map.png);
 	position: absolute;
 	left:50%;
@@ -160,15 +160,15 @@ section > nav > button:last-child:before{
 	width: 30px;
 }
 
-section > nav > button.active{
+section > nav > a.active{
 	background: #f5f5f5;
 	border:1px solid white;
 	border-bottom: none;
 }
-section#info{
+section#infotab{
 	padding: 0;
 }
-section#info > div{
+section#infotab > div{
 	width:96%;
 	margin:0 2%;
 	padding:10px;
@@ -181,7 +181,7 @@ section#info > div{
 
 /* Leaflet maps */
 
-#kaart{
+#kaarttab{
 	padding:0 2%;
 }
 #map{
@@ -192,5 +192,15 @@ section#info > div{
 	box-sizing:border-box;
 }
 
+.info{
+	width:96%;
+	margin: 0 2%;
+	padding: 20px;
+	-webkit-box-sizing: border-box;
+	-moz-box-sizing: border-box;
+	box-sizing: border-box;
+	background: #f5f5f5;
+	line-height: 1.4;
+}
 
 
