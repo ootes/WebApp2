@@ -3,29 +3,10 @@ var APP = APP || {};
 // anonymous function
 (function(window, document){
 
-	// data here;
-	APP.data = 
-	[{
-		title : 'Café Noir',
-		href : '#/locations/cafe-noir',
-		type : 'cafe',
-		desc : 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer congue fermentum enim et rhoncus. Suspendisse id tristique neque. Proin leo risus, interdum eget volutpat et, elementum non arcu. Duis nec metus vitae turpis malesuada fringilla. Phasellus tristique odio eu ligula volutpat eget condimentum magna luctus. Nulla pellentesque mauris ac turpis consequat non pellentesque risus vehicula. Aenean in mauris urna. Praesent sed porta mauris. Quisque odio enim, iaculis et lacinia eleifend, posuere nec elit. Phasellus feugiat ullamcorper rhoncus. Duis porta laoreet eros in tempor. Nulla at facilisis libero. Curabitur aliquet vehicula nunc eu convallis. Ut non odio enim, porttitor pretium nisi.'
-	},
-	{
-		title : 'Café Noir',
-		href : '#/locations/cafe-noir',
-		type : 'cafe'
-	},
-	{
-		title : 'Jaja',
-		href : '#/locations/jaja',
-		type : 'cafe'
-	},
-	{
-		title : 'Café Noir',
-		href : '#/locations/cafe-noir',
-		type : 'cafe'
-	}];
+
+	microAjax("json/locations.json", function (contents) {
+  		APP.data = JSON.parse(contents);
+	});
 
 	APP.directives = {
 		link : {
@@ -54,6 +35,9 @@ var APP = APP || {};
 			// Init page states			
 			APP.states.init();
 
+			// init mapView
+			APP.map.init();
+
 			// Hide addressbar on mobile/tablet
 			APP.utils.hideAddressBar();
 			
@@ -65,9 +49,11 @@ var APP = APP || {};
 			var el = document.querySelector("body");
 			Gator(el).on('click', function(e) {
 
-				console.log(e.target);
-				//e.preventDefault();
-			    // e.target retrieves clicked element 
+				var targetClass = e.target.className;
+				if(targetClass == 'backbtn'){
+					window.location = '/#/index';
+				}
+				
 			});
 		}
 	};
@@ -78,7 +64,7 @@ var APP = APP || {};
 		        '/locations/:locId': APP.pages.location,
 		        '/locations': APP.pages.locations,
 		        '/:hash': APP.pages.locations
-		      };
+		    };
 
 			var router = Router(routes);
       		router.init();
@@ -113,8 +99,6 @@ var APP = APP || {};
             		location = [location];
             		// render the data
             		Transparency.render(document.querySelectorAll('#detail')[0], location, APP.directives);	
-            		
-            		APP.map.init();
             	}else{
             		// if there is no location
             		APP.states.getPage('list');
