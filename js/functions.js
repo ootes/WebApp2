@@ -232,6 +232,8 @@ var APP = APP || {};
 			    attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
 			}).addTo(this.mapView);
 
+
+
 			// add markers to map
 			APP.map.markers = {};
 
