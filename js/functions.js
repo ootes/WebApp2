@@ -171,7 +171,8 @@ var APP = APP || {};
             			// make an array from the object for Transparency
             			location = [location];
 
-            			if(APP.utils.documentWidth() >= 1000){
+            			// if tablet view
+            			if(APP.utils.documentWidth() >= 768){
             				Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
             			}
 
