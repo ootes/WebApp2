@@ -3,7 +3,6 @@ var APP = APP || {};
 // anonymous function
 (function(window, document){
 
-
 	// ajax call to locations.json
 	microAjax("json/locations.json", function (contents) {
   		// get the data from json file and store it into APP.data
@@ -13,9 +12,17 @@ var APP = APP || {};
   		onDomReady( APP.controller.init );
 	});
 
+
 	// object used for the template engine
 	APP.directives = {
 		// find a classname link
+		info: {
+			html : function(){
+				var content = "<h2>"+this.title+"</h2><p>"+this.info+"</p>";
+				return content;
+			}
+		},
+
 		link : {
 			href : function(){
 				// this refers to one instance in the json file
