@@ -171,10 +171,14 @@ var APP = APP || {};
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.normal);
             				}else{
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.active);
-            					APP.map.markers[value.nicename].openPopup()
-            				}
+            				}	
+
+            				APP.map.markers[value.nicename].closePopup();
             			});
 
+            			if(tab == "kaart"){
+            				APP.map.markers[location.nicename].openPopup();
+            			}
 
             			// make an array from the object for Transparency
             			location = [location];
