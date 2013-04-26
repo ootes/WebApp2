@@ -177,7 +177,7 @@ var APP = APP || {};
             				APP.map.markers[value.nicename].closePopup();
             			});
 
-            			if(tab == "kaart"){
+            			if(tab == "kaart" || APP.utils.documentWidth() >= 768){
             				APP.map.markers[location.nicename].openPopup();
             			}
 
