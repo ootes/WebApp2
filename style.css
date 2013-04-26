@@ -278,11 +278,15 @@ section#infotab > div{
 	}
 
 	section#kaarttab{
-		margin-top:20px;
-		padding-top:20px;
-		background: #5dc5cf url(images/bg.jpg)repeat-x;
+
+		background: #5dc5cf;
 	}
-	section.infotab{
+	section#infotab{
 		display:block;
+		padding-top:20px;
+		margin-top:20px;
+		background: #5dc5cf url(images/bg.jpg)repeat-x;
+
+
 	}
 }
