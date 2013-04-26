@@ -251,17 +251,28 @@ section#infotab > div{
 
 	p.info{
 		min-height: 0;
-		padding:bo;
+		border-top-right-radius: 3px;
+		border-top-left-radius: 3px;
 	}
 
 	section#kaarttab{
 		display: block;
 		margin-top:0;
-		background: #5cc5ce;
+		background: #5cc5ce;	
+	}
+	.mapcontainer{
+		border-bottom-right-radius: 3px;
+		border-bottom-left-radius: 3px;
 	}
 }
 
-@media (min-width: 1000px){
+@media (min-width: 768px){
+
+	body{
+		background: #5dc5cf;
+
+	}
+
 	section[data-role=page]{
 		display: block;
 		width:40%;
@@ -278,15 +289,23 @@ section#infotab > div{
 	}
 
 	section#kaarttab{
-
+		margin-bottom:20px;
 		background: #5dc5cf;
 	}
 	section#infotab{
 		display:block;
 		padding-top:20px;
-		margin-top:20px;
-		background: #5dc5cf url(images/bg.jpg)repeat-x;
-
+		margin-top:0;
 
 	}
+	section.content{
+		margin-top:0px;
+	}
+
+	p.info{
+		column-count:2;
+		-moz-column-count:2; /* Firefox */
+		-webkit-column-count:2; /* Safari and Chrome */
+	}
+
 }
