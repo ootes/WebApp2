@@ -170,6 +170,7 @@ var APP = APP || {};
             				if(value.nicename != location.nicename){
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.normal);
             				}else{
+            					APP.map.markers[value.nicename].setOpacity(1.0);
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.active);
             				}	
 
@@ -262,8 +263,12 @@ var APP = APP || {};
 			APP.map.markers = {};
 
 			APP.map.icons = {
-				normal : L.icon({iconUrl: 'images/icon.png'}),
-				active: L.icon({iconUrl: 'images/icon-active.png'})
+				normal : L.icon({
+					iconUrl: 'images/icon.png'
+				}),
+				active: L.icon({
+					iconUrl: 'images/icon-active.png'
+				})
 			}
 
 			_.each(APP.data, function(value, key, list){
