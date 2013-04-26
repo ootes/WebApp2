@@ -171,6 +171,7 @@ var APP = APP || {};
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.normal);
             				}else{
             					APP.map.markers[value.nicename].setIcon(APP.map.icons.active);
+            					APP.map.markers[value.nicename].openPopup()
             				}
             			});
 
