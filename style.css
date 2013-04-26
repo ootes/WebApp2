@@ -5,6 +5,11 @@ h1, h2, h3{
 	color: white;
 }
 
+.info h2{
+		color: #333 ;
+		line-height: 1.4;
+}
+
 body{
 	font-family: arial, helvetica, sans-serif;
 	font-size: 14px;
@@ -301,8 +306,6 @@ section#infotab > div{
 	section.content{
 		margin-top:0px;
 	}
-
-	
 
 }
 
