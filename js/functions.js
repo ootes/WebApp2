@@ -171,6 +171,9 @@ var APP = APP || {};
             			// make an array from the object for Transparency
             			location = [location];
 
+            			if(APP.utils.documentWidth >= 1000){
+            				Transparency.render(document.querySelectorAll('.locations')[0], APP.data, APP.directives);
+            			}
 
 
             			// render the data
@@ -204,6 +207,14 @@ var APP = APP || {};
 
 	// some handy stuff
 	APP.utils = {
+		documentWidth: function(){
+			return document.body.clientWidth;
+		},
+
+		documentHeight: function(){
+			return document.body.clientHeight;
+		},
+
 		// Source: https://gist.github.com/mhammonds/1190492#file-hidemobileaddressbar-js
 		hideAddressBar: function () {
 			if(!window.location.hash) {
