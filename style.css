@@ -302,10 +302,14 @@ section#infotab > div{
 		margin-top:0px;
 	}
 
+	
+
+}
+
+@media (min-width: 1000px){
 	p.info{
 		column-count:2;
 		-moz-column-count:2; /* Firefox */
 		-webkit-column-count:2; /* Safari and Chrome */
 	}
-
 }
